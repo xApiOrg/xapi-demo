@@ -1,9 +1,9 @@
 @import '~@angular/material/core/theming/all-theme';
 @include mat-core();
 
-$xapi-primary: mat-palette($mat-indigo, A200, A100, A900);
+$xapi-primary: mat-palette($mat-red, A200, A100, A900);
 $xapi-accent: mat-palette($mat-pink, A200, A100, A400);
-$xapi-warn: mat-palette($mat-red, A200, A100, A400);
+$xapi-warn: mat-palette($mat-indigo, A200, A100, A400);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $xapi-theme: mat-light-theme($xapi-primary, $xapi-accent, $xapi-warn);
@@ -13,5 +13,9 @@ $xapi-theme: mat-light-theme($xapi-primary, $xapi-accent, $xapi-warn);
 
 $primary: mat-color($xapi-primary);
 
+$small: 14px;
+
 $grey100: #F5F5F5;
 $grey900: #212121;
+
+$green700: #388E3C;

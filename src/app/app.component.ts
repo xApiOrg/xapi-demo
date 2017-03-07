@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   template: `
     <md-toolbar color="primary">
-      <span>Santander</span>
+      <img src="/assets/images/santander.png" alt="Santander logo" class="logo">
       <span class="title">Experience API Demo</span>
     </md-toolbar>
 
@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
       <md-card-title>Xapi Iban</md-card-title>
       <xapi-iban></xapi-iban>
     </md-card>
-
   `
 })
 export class AppComponent {
