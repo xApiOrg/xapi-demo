@@ -1,13 +1,22 @@
-md-toolbar{
-  margin-bottom: 20px;
+@import 'src/xapi-theme.scss';
+
+body{
+  background: red !important;
 }
 
-.title{
-  flex: 1 1 auto;
-  text-align: center;
+md-toolbar{
+  margin-bottom: 20px;
+
+  .title{
+    flex: 1 1 auto;
+    text-align: center;
+  }
 }
 
 md-card{
-  // color: $xapi-primary;
   margin: 10px 20%;
+
+  md-card-title{
+    color: $primary;
+  }
 }

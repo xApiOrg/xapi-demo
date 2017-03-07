@@ -10,3 +10,8 @@ $xapi-theme: mat-light-theme($xapi-primary, $xapi-accent, $xapi-warn);
 
 // Include theme styles for core and each component used in your app.
 @include angular-material-theme($xapi-theme);
+
+$primary: mat-color($xapi-primary);
+
+$grey100: #F5F5F5;
+$grey900: #212121;
