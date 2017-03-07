@@ -1,0 +1,12 @@
+@import '~@angular/material/core/theming/all-theme';
+@include mat-core();
+
+$xapi-primary: mat-palette($mat-indigo, A200, A100, A900);
+$xapi-accent: mat-palette($mat-pink, A200, A100, A400);
+$xapi-warn: mat-palette($mat-red, A200, A100, A400);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$xapi-theme: mat-light-theme($xapi-primary, $xapi-accent, $xapi-warn);
+
+// Include theme styles for core and each component used in your app.
+@include angular-material-theme($xapi-theme);
