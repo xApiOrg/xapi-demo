@@ -51,14 +51,20 @@ h2{
         cursor: pointer;
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
       }
-      .card-text{
+      .card-text, md-icon{
         color: $primary;
       }
 
-      md-icon{
-        color: red;
+      &.highlight{
+        background-color: $primary;
+
+        .card-text, md-icon{
+          color: white;
+        }
       }
     }
+
+
   }
 }
 

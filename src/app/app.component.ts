@@ -15,22 +15,11 @@ import { Component } from '@angular/core';
       <div class="account-selection">
         <h2>1 - Select an account</h2>
         <md-grid-list cols="5" rowHeight="140px" gutterSize="20px">
-          <md-grid-tile>
-            <md-card>
+          <md-grid-tile *ngFor="let account of accounts, let i = index">
+            <md-card (click)="hightlightStatusAccounts = []; hightlightStatusAccounts[i]=true"
+                      [class.highlight]="hightlightStatusAccounts[i]">
               <md-icon class="md-48">card_travel</md-icon>
-              <div class="card-text">Current Account</div>
-            </md-card>
-          </md-grid-tile>
-          <md-grid-tile>
-            <md-card>
-              <md-icon class="md-48">card_travel</md-icon>
-              <div class="card-text">Annual Saver</div>
-            </md-card>
-          </md-grid-tile>
-          <md-grid-tile>
-            <md-card>
-              <md-icon class="md-48">card_travel</md-icon>
-              <div class="card-text">Monthly Saver</div>
+              <div class="card-text">{{account}}</div>
             </md-card>
           </md-grid-tile>
         </md-grid-list>
@@ -41,22 +30,11 @@ import { Component } from '@angular/core';
 
         <div class="subtitle-with-divider">Existing recipient</div>
         <md-grid-list cols="5" rowHeight="140px" gutterSize="20px">
-          <md-grid-tile>
-            <md-card>
+          <md-grid-tile *ngFor="let recipient of recipients, let i = index">
+            <md-card (click)="hightlightStatusRecipients = []; hightlightStatusRecipients[i]=true"
+                      [class.highlight]="hightlightStatusRecipients[i]">
               <md-icon class="md-48">account_circle</md-icon>
-              <div class="card-text">Roderick Shelton</div>
-            </md-card>
-          </md-grid-tile>
-          <md-grid-tile>
-            <md-card>
-              <md-icon class="md-48">account_circle</md-icon>
-              <div class="card-text">Walter Harford</div>
-            </md-card>
-          </md-grid-tile>
-          <md-grid-tile>
-            <md-card>
-              <md-icon class="md-48">account_circle</md-icon>
-              <div class="card-text">Delmar Moores</div>
+              <div class="card-text">{{recipient}}</div>
             </md-card>
           </md-grid-tile>
         </md-grid-list>
@@ -96,4 +74,8 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
+  hightlightStatusRecipients: Array<boolean> = [];
+  hightlightStatusAccounts: Array<boolean> = [];
+  recipients = ['Roderick Shelton', 'Walter Harford', 'Delmar Moores'];
+  accounts = ['Current account', 'Monthly saver', 'Annual saver'];
 }
