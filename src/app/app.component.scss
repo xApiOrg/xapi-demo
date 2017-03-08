@@ -1,7 +1,13 @@
 @import 'src/xapi-theme.scss';
 
-body{
-  background: red !important;
+main{
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 116px);
+
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  color: $primary;
+  padding-bottom: 40px;
 }
 
 md-toolbar{
@@ -17,10 +23,62 @@ md-toolbar{
   }
 }
 
-md-card{
-  margin: 10px 20%;
+footer{
+  height: 32px;
+  background-color: $primary;
+}
 
-  md-card-title{
-    color: $primary;
+h2{
+  font-weight: normal;
+}
+
+.text-light{
+  color: $grey500;
+}
+
+//
+
+.transfer, .account-selection, .recipient-selection{
+  margin: 0 10%;
+}
+
+.account-selection, .recipient-selection{
+  md-grid-tile{
+    text-align: center;
+
+    md-card{
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      }
+      .card-text{
+        color: $primary;
+      }
+
+      md-icon{
+        color: red;
+      }
+    }
+  }
+}
+
+.recipient-selection{
+  .subtitle-with-divider{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    width: 100%;
+    border-bottom: 1px solid $grey400;
+    color: $grey900;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  .new-recipient{
+    margin-top: 30px;
+  }
+}
+
+.transfer{
+  .currrency-name{
+    display: inline-block;
   }
 }
