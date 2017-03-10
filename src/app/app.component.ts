@@ -6,38 +6,66 @@ import { Component } from '@angular/core';
   template: `
     <header>
       <md-toolbar color="primary">
-        <img src="/assets/images/santander.png" alt="Santander logo" class="logo">
-        <span class="title">Experience API Demo</span>
+        <img fxHide.xs fxHide.sm src="/assets/images/santander.png" alt="Santander logo" class="logo">
+        <span class="title">Make an internationnal payment</span>
       </md-toolbar>
     </header>
 
     <main>
+
       <div class="account-selection">
         <h2>1 - Select an account</h2>
-        <md-grid-list cols="5" rowHeight="140px" gutterSize="20px">
-          <md-grid-tile *ngFor="let account of accounts, let i = index">
+
+        <div fxLayout='row' fxLayoutWrap>
+          <div fxFlex="25" class="md-card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
+               *ngFor="let source of sources | slice:0:10, let i = index">
             <md-card (click)="hightlightStatusAccounts = []; hightlightStatusAccounts[i]=true"
-                      [class.highlight]="hightlightStatusAccounts[i]">
-              <md-icon class="md-48">card_travel</md-icon>
-              <div class="card-text">{{account}}</div>
+                     [class.highlight]="hightlightStatusAccounts[i]">
+              <div class="card-header">
+                <md-icon class="md-48" *ngIf="source.type === 'account'">card_travel</md-icon>
+                <md-icon class="md-48" *ngIf="source.type === 'creditCard'">credit_card</md-icon>
+                <div class="card-title">{{source.name}}</div>
+              </div>
+
+              <div class="card-footer">
+                <div>
+                  <span class="currency-flag currency-flag-sm currency-flag-gbp"></span>
+                  <span *ngIf="source.type === 'account'">{{source.currency}} account</span>
+                  <span *ngIf="source.type === 'creditCard'">{{source.currency}} card</span>
+                </div>
+                <div *ngIf="source.type === 'account'">ending with {{source.accountNumber}}</div>
+                <div *ngIf="source.type === 'creditCard'">last digit {{source.lastDigit}}</div>
+              </div>
             </md-card>
-          </md-grid-tile>
-        </md-grid-list>
+          </div>
+        </div>
       </div>
 
       <div class="recipient-selection">
         <h2>2 - Select a recipient</h2>
 
         <div class="subtitle-with-divider">Existing recipient</div>
-        <md-grid-list cols="5" rowHeight="140px" gutterSize="20px">
-          <md-grid-tile *ngFor="let recipient of recipients, let i = index">
+
+        <div fxLayout='row' fxLayoutWrap>
+          <div fxFlex="25" class="md-card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
+               *ngFor="let recipient of recipients | slice:0:3, let i = index">
             <md-card (click)="hightlightStatusRecipients = []; hightlightStatusRecipients[i]=true"
-                      [class.highlight]="hightlightStatusRecipients[i]">
-              <md-icon class="md-48">account_circle</md-icon>
-              <div class="card-text">{{recipient}}</div>
+                     [class.highlight]="hightlightStatusRecipients[i]">
+              <div class="card-header">
+                <md-icon class="md-48">account_circle</md-icon>
+                <div class="card-title">{{recipient.name}}</div>
+              </div>
+
+              <div class="card-footer">
+                <div>
+                  <span class="currency-flag currency-flag-sm currency-flag-gbp"></span>
+                  <span>{{recipient.currency}} account</span>
+                </div>
+                <div>ending with {{recipient.accountNumber}}</div>
+              </div>
             </md-card>
-          </md-grid-tile>
-        </md-grid-list>
+          </div>
+        </div>
 
         <div class="subtitle-with-divider new-recipient">New recipient</div>
         <md-card>
@@ -48,6 +76,13 @@ import { Component } from '@angular/core';
       <div class="transfer">
         <h2>3 - Your transfer</h2>
         <md-card>
+          <div class="xapi-payment-type-checkbox">
+          <label class="example-margin">Payment type:</label>
+            <md-radio-group color="primary">
+              <md-radio-button value="fast">Fast</md-radio-button>
+              <md-radio-button value="cheap">Cheap</md-radio-button>
+            </md-radio-group>
+          </div>
           <div class="xapi-currency-input">
             <md-input-container>
               <input mdInput placeholder="You send">
@@ -65,6 +100,7 @@ import { Component } from '@angular/core';
             <div class="currency-flag currency-flag-usd"></div>
             <div class="currrency-name">USD</div>
           </div>
+          <div><span class="text-light">Estimated arrival:</span> 1 hour</div>
         </md-card>
       </div>
     </main>
@@ -76,6 +112,50 @@ import { Component } from '@angular/core';
 export class AppComponent {
   hightlightStatusRecipients: Array<boolean> = [];
   hightlightStatusAccounts: Array<boolean> = [];
-  recipients = ['Roderick Shelton', 'Walter Harford', 'Delmar Moores'];
-  accounts = ['Current account', 'Monthly saver', 'Annual saver'];
+
+  recipients = [
+    {
+      name: 'Roderick Shelton',
+      currency: 'GPB',
+      accountNumber: '1468'
+    },
+    {
+      name: 'Walter Harford',
+      currency: 'GPB',
+      accountNumber: '3345'
+    },
+    {
+      name: 'Delmar Moores',
+      currency: 'GPB',
+      accountNumber: '1232'
+    }
+  ];
+
+  sources = [
+    {
+      name: 'Current account',
+      currency: 'GPB',
+      accountNumber: '1468',
+      type: 'account'
+    },
+    {
+      name: 'Monthly saver',
+      currency: 'GPB',
+      accountNumber: '3345',
+      type: 'account'
+    },
+    {
+      name: 'Annual saver',
+      currency: 'GPB',
+      accountNumber: '1232',
+      type: 'account'
+    },
+    {
+      name: 'Credit Card',
+      currency: 'GPB',
+      lastDigit: '3312',
+      type: 'creditCard'
+    }
+  ];
+
 }

@@ -1,7 +1,37 @@
 @import '~@angular/material/core/theming/all-theme';
 @include mat-core();
 
-$xapi-primary: mat-palette($mat-red, A200, A100, A900);
+$santander: (
+  50: #e0ebf3,
+  100: #b3cee1,
+  200: #80adce,
+  300: #4d8cba,
+  400: #2673ab,
+  500: #005a9c,
+  600: #005294,
+  700: #00488a,
+  800: #003f80,
+  A200: #6a9bff,
+  A400: #3778ff,
+  A700: #ff0000,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+ );
+
+$xapi-primary: mat-palette($santander, A700);
 $xapi-accent: mat-palette($mat-pink, A200, A100, A400);
 $xapi-warn: mat-palette($mat-indigo, A200, A100, A400);
 
@@ -28,7 +58,7 @@ $grey900: #212121;
 $green700: #388E3C;
 
 
-.material-icons.md-18 { font-size: 18px; width: 48px; height: 48px;}
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px;  width: 48px; height: 48px;}
+.material-icons.md-18 { font-size: 18px; width: 18px; height: 18px;}
+.material-icons.md-24 { font-size: 24px; width: 24px; height: 24px;}
+.material-icons.md-36 { font-size: 36px; width: 36px; height: 36px;}
+.material-icons.md-48 { font-size: 48px; width: 48px; height: 48px;}
