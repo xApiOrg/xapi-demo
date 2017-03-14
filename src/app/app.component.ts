@@ -12,7 +12,6 @@ import { Component } from '@angular/core';
     </header>
 
     <main>
-
       <div class="account-selection">
         <h2>1 - Select an account</h2>
 
@@ -29,11 +28,11 @@ import { Component } from '@angular/core';
 
               <div class="card-footer">
                 <div>
-                  <span class="currency-flag currency-flag-sm currency-flag-gbp"></span>
-                  <span *ngIf="source.type === 'account'">{{source.currency}} account</span>
+                  <span *ngIf="source.type === 'creditCard'" class="currency-flag currency-flag-sm currency-flag-gbp"></span>
+                  <span *ngIf="source.type === 'account'">Account balance</span>
                   <span *ngIf="source.type === 'creditCard'">{{source.currency}} card</span>
                 </div>
-                <div *ngIf="source.type === 'account'">ending with {{source.accountNumber}}</div>
+                <div *ngIf="source.type === 'account'">{{source.balance | currency:source.currency:true:'1.2-2'}}</div>
                 <div *ngIf="source.type === 'creditCard'">last digit {{source.lastDigit}}</div>
               </div>
             </md-card>
@@ -113,20 +112,35 @@ export class AppComponent {
   hightlightStatusRecipients: Array<boolean> = [];
   hightlightStatusAccounts: Array<boolean> = [];
 
+  groups: Array<any> = [
+    {
+      heading: 'Angular2Accordion Dynamic Content A',
+      content: ' I’m a dynamic content to show in angular 2 accordion : )'
+    },
+    {
+      heading: 'Angular2Accordion Dynamic Content B',
+      content: 'I’m a dynamic content to show in angular 2 accordion : )'
+    },
+    {
+      heading: 'Angular2Accordion HTML Content C',
+      content: 'I’m a dynamic content to show in angular 2 accordion : ) '
+    }
+  ];
+
   recipients = [
     {
       name: 'Roderick Shelton',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '1468'
     },
     {
       name: 'Walter Harford',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '3345'
     },
     {
       name: 'Delmar Moores',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '1232'
     }
   ];
@@ -134,25 +148,28 @@ export class AppComponent {
   sources = [
     {
       name: 'Current account',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '1468',
+      balance: 102,
       type: 'account'
     },
     {
       name: 'Monthly saver',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '3345',
+      balance: 3440,
       type: 'account'
     },
     {
       name: 'Annual saver',
-      currency: 'GPB',
+      currency: 'GBP',
       accountNumber: '1232',
+      balance: 12003,
       type: 'account'
     },
     {
       name: 'Credit Card',
-      currency: 'GPB',
+      currency: 'GBP',
       lastDigit: '3312',
       type: 'creditCard'
     }
