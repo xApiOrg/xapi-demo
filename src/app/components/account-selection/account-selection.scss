@@ -1,0 +1,48 @@
+@import 'src/xapi-theme.scss';
+
+.xapi-account-selection{
+  .md-card-wrapper{
+    text-align: center;
+
+    md-card{
+      margin: 20px auto;
+      text-align: center;
+      display: inline-block;
+      padding: 0;
+
+      .card-footer{
+        padding: 10px 20px 20px 20px;
+      }
+
+      .card-header{
+        padding-top: 20px;
+        padding-bottom: 10px;
+      }
+
+      .card-title, md-icon{
+        color: $primary;
+      }
+      .card-footer{
+        color: $grey500;
+      }
+      div{
+        line-height: 20px;
+      }
+
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      }
+
+      &.highlight{
+        .card-header{
+          background-color: $primary;
+        }
+
+        .card-title, md-icon{
+          color: white;
+        }
+      }
+    }
+  }
+}
