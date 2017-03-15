@@ -7,8 +7,11 @@ import { AccordionComponent } from '../accordion.component';
   template: `
     <div class="xapi-accordion-group" [ngClass]="{'panel-open': isOpen}">
       <div class="panel-heading" (click)="toggleOpen()">
-        <div class="panel-badge">{{index}}</div>
-        <h2 class="panel-title">{{heading}}</h2>
+        <div class="panel-badge" [ngClass]="{'highlighted': isOpen}">{{index}}</div>
+        <h2 class="panel-title" [ngClass]="{'highlighted': isOpen}">
+          <span>{{heading}}</span>
+          <span *ngIf="source" class="subtitle">{{source.name}}</span>
+        </h2>
       </div>
       <div class="panel-collapse" [@panelState]="isOpen">
         <div class="panel-body">
@@ -37,6 +40,7 @@ export class AccordionGroupComponent implements OnDestroy {
   @Input() heading: string;
   @Input() index: number;
   @Input() isOpen: boolean;
+  @Input() source: any;
 
   constructor(private accordion: AccordionComponent) {
     this.accordion.addGroup(this);
@@ -48,6 +52,7 @@ export class AccordionGroupComponent implements OnDestroy {
 
   toggleOpen(): void {
     this.isOpen = this.isOpen === true ? false : true;
+    this.accordion.step = this.index;
 
     if (this.isOpen === true) {
       this.accordion.closeOthers(this);

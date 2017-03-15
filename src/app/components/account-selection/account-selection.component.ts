@@ -71,10 +71,9 @@ export class AccountSelectionComponent {
     this.hightlightStatusAccounts = [];
     this.hightlightStatusAccounts[i] = true;
 
-    // this.source.emit(source);
-
     setTimeout(() => {
       this.next.emit();
+      this.source.emit(source);
     }, 500);
   }
 }

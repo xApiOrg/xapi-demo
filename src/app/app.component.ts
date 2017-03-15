@@ -13,15 +13,15 @@ import { Component } from '@angular/core';
 
     <main>
       <xapi-accordion [step]="step">
-        <xapi-accordion-group heading="Select an account" index=1 isOpen=true>
-          <xapi-account-selection (next)="nextStep(1)"></xapi-account-selection>
+        <xapi-accordion-group heading="Select an account" [index]=1 [isOpen]=true [source]="source">
+          <xapi-account-selection (next)="nextStep(1)" (source)="displaySource($event)"></xapi-account-selection>
         </xapi-accordion-group>
 
-        <xapi-accordion-group heading="Select a recipient" index=2 isOpen=false>
+        <xapi-accordion-group heading="Select a recipient" [index]=2 [isOpen]=false>
           <xapi-recipient-selection (next)="nextStep(2)"></xapi-recipient-selection>
         </xapi-accordion-group>
 
-        <xapi-accordion-group heading="Your transfer" index=3 isOpen=false>
+        <xapi-accordion-group heading="Your transfer" [index]=3 [isOpen]=false>
           <xapi-transfer></xapi-transfer>
         </xapi-accordion-group>
       </xapi-accordion>
@@ -39,7 +39,7 @@ export class AppComponent {
     this.step = index + 1;
   }
 
-  // displaySource(source: any) {
-  //   this.source = source
-  // }
+  displaySource(source: any) {
+    this.source = source;
+  }
 }
