@@ -19,8 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "xapi-theme.scss",
         "styles.css",
-        "xapi-theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

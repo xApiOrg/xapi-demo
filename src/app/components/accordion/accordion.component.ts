@@ -34,9 +34,7 @@ export class AccordionComponent implements OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log('call');
     if (changes['step']) {
-      console.log(changes);
       const changedProp = changes['step'];
       const newStep = changedProp.currentValue;
       if (!changedProp.isFirstChange()) {

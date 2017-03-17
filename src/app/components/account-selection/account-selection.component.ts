@@ -6,13 +6,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   template: `
     <div class="xapi-account-selection">
       <div fxLayout='row' fxLayoutWrap>
-        <div fxFlex="25" class="md-card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
+        <div fxFlex="25" class="card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
              *ngFor="let source of sources | slice:0:10, let i = index">
-          <md-card (click)="selectCard(i, source)"
-                   [class.highlight]="hightlightStatusAccounts[i]">
+          <div (click)="selectCard(i, source)" class="card card-contact"
+                [class.highlight]="hightlightStatusAccounts[i]">
             <div class="card-header">
-              <md-icon class="md-48" *ngIf="source.type === 'account'">card_travel</md-icon>
-              <md-icon class="md-48" *ngIf="source.type === 'creditCard'">credit_card</md-icon>
+              <i *ngIf="source.type === 'account'" class="material-icons md-48">card_travel</i>
+              <i *ngIf="source.type === 'creditCard'" class="material-icons md-48">credit_card</i>
               <div class="card-title">{{source.name}}</div>
             </div>
 
@@ -25,7 +25,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
               <div *ngIf="source.type === 'account'">{{source.balance | currency:source.currency:true:'1.2-2'}}</div>
               <div *ngIf="source.type === 'creditCard'">last digit {{source.lastDigit}}</div>
             </div>
-          </md-card>
+          </div>
         </div>
       </div>
     </div>

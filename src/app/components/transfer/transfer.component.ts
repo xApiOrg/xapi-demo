@@ -5,33 +5,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./transfer.scss'],
   template: `
     <div class="xapi-transfer">
-      <md-card>
+      <div>
         <div class="xapi-payment-type-checkbox">
-        <label class="example-margin">Payment type:</label>
-          <md-radio-group color="primary">
-            <md-radio-button value="fast">Fast</md-radio-button>
-            <md-radio-button value="cheap">Cheap</md-radio-button>
-          </md-radio-group>
+        <label>Payment type:</label>
+        <input type="radio" value="fast" checked>Fast<br>
+        <input type="radio" value="cheap">Cheap<br>
         </div>
         <div class="xapi-currency-input">
-          <md-input-container>
-            <input mdInput placeholder="You send">
-          </md-input-container>
+          <input mdInput placeholder="You send">
           <div class="currency-flag currency-flag-gbp"></div>
           <div class="currrency-name">GBP</div>
         </div>
-        <div>4.98 <span class="text-light">Santander Fee</span></div>
-        <div>0.867 <span class="text-light">Exchange Rate</span></div>
+        <div class="xapi-exchanges">
+          <div class="exchange-fee">
+            <span class="circle"></span>
+            <span>4.98</span>
+            <span class="text-light">Santander Fee</span>
+          </div>
+          <div class="exchange-rate">
+            <span class="circle"></span>
+            <span>0.867</span>
+            <span class="text-light">Exchange Rate</span>
+          </div>
+        </div>
         <div class="xapi-currency-input">
-          <md-input-container>
-            <input mdInput placeholder="Recipients gets">
-          </md-input-container>
+          <input mdInput placeholder="Recipients gets">
 
           <div class="currency-flag currency-flag-usd"></div>
           <div class="currrency-name">USD</div>
         </div>
-        <div><span class="text-light">Estimated arrival:</span> 1 hour</div>
-      </md-card>
+        <div>
+          <span class="text-light">Estimated arrival:</span>
+          <span>1 hour</span>
+        </div>
+      </div>
     </div>
   `
 })

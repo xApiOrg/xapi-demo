@@ -1,62 +1,9 @@
-@import '~@angular/material/core/theming/all-theme';
-@include mat-core();
+@import "~google-material-color/dist/palette.scss";
+$red: red;
 
-$santander: (
-  50: #e0ebf3,
-  100: #b3cee1,
-  200: #80adce,
-  300: #4d8cba,
-  400: #2673ab,
-  500: #005a9c,
-  600: #005294,
-  700: #00488a,
-  800: #003f80,
-  A200: #6a9bff,
-  A400: #3778ff,
-  A700: #ff0000,
-  contrast: (
-    50: $black-87-opacity,
-    100: $black-87-opacity,
-    200: $black-87-opacity,
-    300: $black-87-opacity,
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: $black-87-opacity,
-    A200: $black-87-opacity,
-    A400: $black-87-opacity,
-    A700: white,
-  )
- );
-
-$xapi-primary: mat-palette($santander, A700);
-$xapi-accent: mat-palette($mat-pink, A200, A100, A400);
-$xapi-warn: mat-palette($mat-indigo, A200, A100, A400);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$xapi-theme: mat-light-theme($xapi-primary, $xapi-accent, $xapi-warn);
-
-// Include theme styles for core and each component used in your app.
-@include angular-material-theme($xapi-theme);
-
-$primary: mat-color($xapi-primary);
+$grey: palette(Grey, 500);
 
 $small: 14px;
-
-$grey100: #F5F5F5;
-$grey200: #EEEEEE;
-$grey300: #E0E0E0;
-$grey400: #BDBDBD;
-$grey500: #9E9E9E;
-$grey600: #757575;
-$grey700: #616161;
-$grey800: #424242;
-$grey900: #212121;
-
-$green700: #388E3C;
-
 
 .material-icons.md-18 { font-size: 18px; width: 18px; height: 18px;}
 .material-icons.md-24 { font-size: 24px; width: 24px; height: 24px;}

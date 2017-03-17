@@ -1,6 +1,12 @@
+@import 'src/xapi-theme.scss';
+
 .xapi-transfer{
   .currrency-name{
     display: inline-block;
+  }
+
+  .text-light{
+    color: $grey;
   }
 
   .xapi-payment-type-slider{
@@ -10,4 +16,31 @@
       display: inline-block;
     }
   }
+
+  .xapi-currency-input, .xapi-currency-input{
+    margin: 10px 0;
+  }
+
+  .xapi-exchanges{
+    padding: 0 20px;
+
+    .exchange-fee, .exchange-rate{
+      border-left: 1px solid $grey;
+      padding-left: 15px;
+      position: relative;
+      line-height: 20px;
+    }
+
+    .circle{
+      width: 6px;
+      height: 6px;
+      position: absolute;
+      top: 7px;
+      left: -3px;
+      background: $grey;
+      border-radius: 3px;
+      line-height: 20px;
+    }
+  }
+
 }

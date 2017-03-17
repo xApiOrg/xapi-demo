@@ -6,15 +6,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   template: `
     <div class="xapi-recipient-selection">
 
-      <div class="subtitle-with-divider">Existing recipient</div>
+      <div class="subtitle">Existing recipient</div>
 
-      <div fxLayout='row' fxLayoutWrap>
-        <div fxFlex="25" class="md-card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
+      <div fxLayout='row' fxLayoutWrap class="existing-recipient">
+        <div fxFlex="25" class="card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
              *ngFor="let recipient of recipients | slice:0:3, let i = index">
-          <md-card (click)="selectCard(i)"
-                   [class.highlight]="hightlightStatusRecipients[i]">
+          <div (click)="selectCard(i)" class="card card-contact"
+               [class.highlight]="hightlightStatusRecipients[i]">
             <div class="card-header">
-              <md-icon class="md-48">account_circle</md-icon>
+              <i class="md-48 material-icons">account_circle</i>
               <div class="card-title">{{recipient.name}}</div>
             </div>
 
@@ -25,14 +25,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
               </div>
               <div>ending with {{recipient.accountNumber}}</div>
             </div>
-          </md-card>
+          </div>
         </div>
       </div>
 
-      <div class="subtitle-with-divider new-recipient">New recipient</div>
-      <md-card>
-        <xapi-iban></xapi-iban>
-      </md-card>
+      <div class="new-recipient">
+        <div class="subtitle">New recipient</div>
+        <div class="card">
+          <xapi-iban></xapi-iban>
+        </div>
+      </div>
     </div>
   `
 })
@@ -62,6 +64,9 @@ export class RecipientSelectionComponent {
   selectCard(i: number): void {
     this.hightlightStatusRecipients = [];
     this.hightlightStatusRecipients[i] = true;
-    this.next.emit();
+
+    setTimeout(() => {
+      this.next.emit();
+    }, 500);
   }
 }

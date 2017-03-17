@@ -8,32 +8,33 @@ import { AccordionComponent } from '../accordion.component';
     <div class="xapi-accordion-group" [ngClass]="{'panel-open': isOpen}">
       <div class="panel-heading" (click)="toggleOpen()">
         <div class="panel-badge" [ngClass]="{'highlighted': isOpen}">{{index}}</div>
-        <h2 class="panel-title" [ngClass]="{'highlighted': isOpen}">
+        <div class="panel-title" [ngClass]="{'highlighted': isOpen}">
           <span>{{heading}}</span>
           <span *ngIf="source" class="subtitle">{{source.name}}</span>
-        </h2>
+          <span *ngIf="source" class="link">Edit</span>
+        </div>
       </div>
-      <div class="panel-collapse" [@panelState]="isOpen">
+      <div class="panel-collapse" *ngIf="isOpen">
         <div class="panel-body">
           <ng-content></ng-content>
         </div>
       </div>
     </div>
   `,
-  animations: [
-    trigger('panelState', [
-      state('true', style({
-        opacity: '1',
-      })),
-      state('false', style({
-        opacity: '0',
-        overflow: 'hidden',
-        height: '0'
-      })),
-      transition('0 => 1', animate('300ms ease-out')),
-      transition('* => 0', animate('300ms ease-out')),
-    ])
-  ]
+  // animations: [
+  //   trigger('panelState', [
+  //     state('true', style({
+  //       opacity: '1',
+  //     })),
+  //     state('false', style({
+  //       opacity: '0',
+  //       overflow: 'hidden',
+  //       height: '0'
+  //     })),
+  //     transition('0 => 1', animate('300ms ease-out')),
+  //     transition('* => 0', animate('300ms ease-out')),
+  //   ])
+  // ]
 })
 
 export class AccordionGroupComponent implements OnDestroy {
