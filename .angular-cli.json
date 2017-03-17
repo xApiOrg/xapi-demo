@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "xapi-theme.scss",
-        "styles.css",
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

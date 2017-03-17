@@ -5,17 +5,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./transfer.scss'],
   template: `
     <div class="xapi-transfer">
-      <div>
-        <div class="xapi-payment-type-checkbox">
-        <label>Payment type:</label>
-        <input type="radio" value="fast" checked>Fast<br>
-        <input type="radio" value="cheap">Cheap<br>
+      <div class="card">
+        <div class="xapi-payment-checkbox">
+          <label>Payment type:</label>
+          <form>
+            <input type="radio" name="paymentType" value="fast" checked>
+            <span>Fast</span>
+            <input type="radio" name="paymentType" value="cheap">
+            <span>Cheap</span>
+          </form>
         </div>
-        <div class="xapi-currency-input">
-          <input mdInput placeholder="You send">
+
+        <div class="currency-input-wrapper" fxLayout="row" fxLayoutAlign=" center">
+          <input class="xapi-input" placeholder="1000">
           <div class="currency-flag currency-flag-gbp"></div>
           <div class="currrency-name">GBP</div>
         </div>
+
         <div class="xapi-exchanges">
           <div class="exchange-fee">
             <span class="circle"></span>
@@ -28,13 +34,14 @@ import { Component } from '@angular/core';
             <span class="text-light">Exchange Rate</span>
           </div>
         </div>
-        <div class="xapi-currency-input">
-          <input mdInput placeholder="Recipients gets">
 
+        <div class="currency-input-wrapper" fxLayout="row" fxLayoutAlign=" center">
+          <input class="xapi-input" mdInput placeholder="1235.80">
           <div class="currency-flag currency-flag-usd"></div>
           <div class="currrency-name">USD</div>
         </div>
-        <div>
+
+        <div class="estimated-arrive-wrapper">
           <span class="text-light">Estimated arrival:</span>
           <span>1 hour</span>
         </div>

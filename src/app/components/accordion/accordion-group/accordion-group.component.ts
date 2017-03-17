@@ -5,7 +5,7 @@ import { AccordionComponent } from '../accordion.component';
   selector: 'xapi-accordion-group',
   styleUrls: ['./accordion-group.scss'],
   template: `
-    <div class="xapi-accordion-group" [ngClass]="{'panel-open': isOpen}">
+    <div class="xapi-accordion-group" [ngClass]="{'closed': !isOpen}">
       <div class="panel-heading" (click)="toggleOpen()">
         <div class="panel-badge" [ngClass]="{'highlighted': isOpen}">{{index}}</div>
         <div class="panel-title" [ngClass]="{'highlighted': isOpen}">
@@ -14,27 +14,13 @@ import { AccordionComponent } from '../accordion.component';
           <span *ngIf="source" class="link">Edit</span>
         </div>
       </div>
-      <div class="panel-collapse" *ngIf="isOpen">
+      <div class="panel-collapse">
         <div class="panel-body">
           <ng-content></ng-content>
         </div>
       </div>
     </div>
-  `,
-  // animations: [
-  //   trigger('panelState', [
-  //     state('true', style({
-  //       opacity: '1',
-  //     })),
-  //     state('false', style({
-  //       opacity: '0',
-  //       overflow: 'hidden',
-  //       height: '0'
-  //     })),
-  //     transition('0 => 1', animate('300ms ease-out')),
-  //     transition('* => 0', animate('300ms ease-out')),
-  //   ])
-  // ]
+  `
 })
 
 export class AccordionGroupComponent implements OnDestroy {

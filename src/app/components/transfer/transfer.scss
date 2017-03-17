@@ -1,31 +1,33 @@
 @import 'src/xapi-theme.scss';
 
 .xapi-transfer{
-  .currrency-name{
-    display: inline-block;
+
+  .xapi-payment-checkbox{
+    margin-bottom: 20px;
+  }
+
+  .currency-input-wrapper{
+    .xapi-input{
+      margin-right: 5px;
+    }
+
+    .currrency-name{
+      display: inline-block;
+      margin-left: 5px;
+    }
   }
 
   .text-light{
     color: $grey;
   }
 
-  .xapi-payment-type-slider{
-    display: inline-block;
-
-    .slider-text{
-      display: inline-block;
-    }
-  }
-
-  .xapi-currency-input, .xapi-currency-input{
-    margin: 10px 0;
-  }
-
   .xapi-exchanges{
-    padding: 0 20px;
+    margin: 0 20px;
+    border-left: 1px solid $grey;
+    padding: 10px 0;
+    font-size: .9em;
 
     .exchange-fee, .exchange-rate{
-      border-left: 1px solid $grey;
       padding-left: 15px;
       position: relative;
       line-height: 20px;
@@ -41,6 +43,12 @@
       border-radius: 3px;
       line-height: 20px;
     }
+  }
+
+  .estimated-arrive-wrapper{
+    font-size: .9em;
+    margin-top: 3px;
+    margin-left: 1px;
   }
 
 }
