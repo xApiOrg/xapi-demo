@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Input, trigger, state, style, transition, animate} from '@angular/core';
+import { Component, OnDestroy, Input, trigger, state, style, transition, animate, OnChanges, SimpleChange } from '@angular/core';
 import { AccordionComponent } from '../accordion.component';
 
 @Component({
@@ -7,11 +7,12 @@ import { AccordionComponent } from '../accordion.component';
   template: `
     <div class="xapi-accordion-group" [ngClass]="{'closed': !isOpen}">
       <div class="panel-heading" (click)="toggleOpen()">
-        <div class="panel-badge" [ngClass]="{'highlighted': isOpen}">{{index}}</div>
+        <div class="panel-badge" [ngClass]="{'highlighted': isOpen}">{{index + 1}}</div>
         <div class="panel-title" [ngClass]="{'highlighted': isOpen}">
           <span>{{heading}}</span>
-          <span *ngIf="source" class="subtitle">{{source.name}}</span>
-          <span *ngIf="source" class="link">Edit</span>
+          <span *ngIf="source && index == 0" class="subtitle">{{source.name}}</span>
+          <span *ngIf="recipient && index == 1" class="subtitle">{{recipient.name}}</span>
+          <span *ngIf="source && !isOpen || recipient && !isOpen" class="link">Edit</span>
         </div>
       </div>
       <div class="panel-collapse">
@@ -23,11 +24,12 @@ import { AccordionComponent } from '../accordion.component';
   `
 })
 
-export class AccordionGroupComponent implements OnDestroy {
+export class AccordionGroupComponent implements OnDestroy, OnChanges {
   @Input() heading: string;
   @Input() index: number;
   @Input() isOpen: boolean;
   @Input() source: any;
+  @Input() recipient: any;
 
   constructor(private accordion: AccordionComponent) {
     this.accordion.addGroup(this);
@@ -37,11 +39,21 @@ export class AccordionGroupComponent implements OnDestroy {
     this.accordion.removeGroup(this);
   }
 
-  toggleOpen(): void {
-    this.isOpen = this.isOpen === true ? false : true;
-    this.accordion.step = this.index;
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        const changedProp = changes[propName];
 
-    if (this.isOpen === true) {
+        if (!changedProp.isFirstChange()) {
+          this.accordion.groups[this.index + 1].toggleOpen();
+        }
+      }
+    }
+  }
+
+  toggleOpen(): void {
+    if (!this.isOpen) {
+      this.isOpen = true;
       this.accordion.closeOthers(this);
     }
   }

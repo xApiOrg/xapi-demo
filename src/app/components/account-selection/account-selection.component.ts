@@ -33,8 +33,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AccountSelectionComponent {
   hightlightStatusAccounts: Array<boolean> = [];
-
-  @Output() next = new EventEmitter<void>();
   @Output() source = new EventEmitter<void>();
 
   sources = [
@@ -68,11 +66,10 @@ export class AccountSelectionComponent {
   ];
 
   selectCard(i: number, source: any): void {
-    this.hightlightStatusAccounts = [];
+    this.hightlightStatusAccounts = new Array(this.sources.length).fill(false);
     this.hightlightStatusAccounts[i] = true;
 
     setTimeout(() => {
-      this.next.emit();
       this.source.emit(source);
     }, 500);
   }

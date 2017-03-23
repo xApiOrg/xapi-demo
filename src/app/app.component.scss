@@ -32,7 +32,6 @@ footer{
   background: white;
   padding: 20px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin: 3px;
 }
 
@@ -47,7 +46,6 @@ footer{
 }
 
 /deep/ .xapi-submit{
-  margin-left: 20px;
   height: 32px;
   padding: 0 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -57,6 +55,8 @@ footer{
   color: white;
   border: none;
   font-family: Roboto,"Helvetica Neue",sans-serif;
+  outline: none;
+  font-weight: bold;
 
   &:disabled{
     background: $grey-light;
@@ -82,6 +82,74 @@ footer{
   &:focus{
     outline: none;
     border: 1px solid $red;
+  }
+}
+
+/deep/ .xapi-radio{
+  position: relative;
+  label{
+    &:hover{
+      input:not(:checked) ~{
+        .check{
+          border: 3px solid $grey-dark;
+        }
+        .text{
+          color: $grey-dark;
+        }
+      }
+
+    }
+    cursor: pointer;
+    line-height: 16px;
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .text{
+    color: grey;
+    transition: 0.25s linear;
+  }
+
+  input{
+    visibility: hidden;
+  }
+
+  .check{
+    position: absolute;
+    border: 3px solid #AAAAAA;
+    border-radius: 100%;
+    height: 14px;
+    width: 14px;
+    top: 0px;
+    left: 20px;
+    transition: border .25s linear;
+  }
+
+  .check::before {
+    display: block;
+    position: absolute;
+  	content: '';
+    border-radius: 100%;
+    height: 10px;
+    width: 10px;
+    top: 2px;
+  	left: 2px;
+    margin: auto;
+  	transition: background 0.25s linear;
+  }
+
+  input:checked ~{
+    .check {
+      border: 3px solid $red;
+    }
+
+    .check::before{
+      background: $red;
+    }
+
+    .text{
+      color: $red;
+    }
   }
 }
 

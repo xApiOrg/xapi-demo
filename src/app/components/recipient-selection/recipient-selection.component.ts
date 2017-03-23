@@ -11,7 +11,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
       <div fxLayout='row' fxLayoutWrap class="existing-recipient">
         <div fxFlex="25" class="card-wrapper" fxFlex.sm="50" fxFlex.xs="50"
              *ngFor="let recipient of recipients | slice:0:3, let i = index">
-          <div (click)="selectCard(i)" class="card card-contact"
+          <div (click)="selectCard(i, recipient)" class="card card-contact"
                [class.highlight]="hightlightStatusRecipients[i]">
             <div class="card-header">
               <i class="md-48 material-icons">account_circle</i>
@@ -42,6 +42,7 @@ export class RecipientSelectionComponent {
   hightlightStatusRecipients: Array<boolean> = [];
 
   @Output() next = new EventEmitter<void>();
+  @Output() recipient = new EventEmitter<void>();
 
   recipients = [
     {
@@ -61,12 +62,12 @@ export class RecipientSelectionComponent {
     }
   ];
 
-  selectCard(i: number): void {
+  selectCard(i: number, recipient: any): void {
     this.hightlightStatusRecipients = [];
     this.hightlightStatusRecipients[i] = true;
 
     setTimeout(() => {
-      this.next.emit();
+      this.recipient.emit(recipient);
     }, 500);
   }
 }

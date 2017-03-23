@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { XapiIbanModule } from 'xapi-iban';
 import { AppComponent } from './app.component';
@@ -28,7 +29,8 @@ import { TransferComponent } from './components/transfer/transfer.component';
     FormsModule,
     HttpModule,
     XapiIbanModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

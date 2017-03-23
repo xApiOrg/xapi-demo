@@ -5,21 +5,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   template: `
     <header fxLayout="row" fxLayoutAlign="center center">
-      <img fxHide.xs fxHide.sm src="/assets/images/santander.png" alt="Santander logo" class="logo">
+      <img fxHide.xs fxHide.sm src="./assets/images/santander.png" alt="Santander logo" class="logo">
       <span class="title">Make an internationnal payment</span>
     </header>
 
     <main>
-      <xapi-accordion [step]="step">
-        <xapi-accordion-group heading="Select an account" [index]=1 [isOpen]=false [source]="source">
-          <xapi-account-selection (next)="nextStep(1)" (source)="displaySource($event)"></xapi-account-selection>
+      <xapi-accordion>
+        <xapi-accordion-group heading="Select an account" [index]=0 [isOpen]=true [source]="source">
+          <xapi-account-selection (source)="displaySource($event)"></xapi-account-selection>
         </xapi-accordion-group>
 
-        <xapi-accordion-group heading="Select a recipient" [index]=2 [isOpen]=false>
-          <xapi-recipient-selection (next)="nextStep(2)"></xapi-recipient-selection>
+        <xapi-accordion-group heading="Select a recipient" [index]=1 [isOpen]=false [recipient]="recipient">
+          <xapi-recipient-selection (recipient)="displayRecipient($event)"></xapi-recipient-selection>
         </xapi-accordion-group>
 
-        <xapi-accordion-group heading="Your transfer" [index]=3 [isOpen]=true>
+        <xapi-accordion-group heading="Your transfer" [index]=2 [isOpen]=false>
           <xapi-transfer></xapi-transfer>
         </xapi-accordion-group>
       </xapi-accordion>
@@ -30,14 +30,14 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
-  step = 1;
   source: any;
-
-  nextStep(index: number) {
-    this.step = index + 1;
-  }
+  recipient: any;
 
   displaySource(source: any) {
     this.source = source;
+  }
+
+  displayRecipient(recipient: any) {
+    this.recipient = recipient;
   }
 }

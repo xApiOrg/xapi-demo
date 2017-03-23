@@ -10,6 +10,11 @@
       margin-right: 5px;
     }
 
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }ng 
+
     .currrency-name{
       display: inline-block;
       margin-left: 5px;
@@ -48,6 +53,10 @@
     font-size: .9em;
     margin-top: 3px;
     margin-left: 1px;
+  }
+
+  .xapi-submit{
+    margin-top: 20px;
   }
 
 }
