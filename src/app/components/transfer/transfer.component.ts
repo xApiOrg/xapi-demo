@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FormatHoursPipe } from '../shared/format-hours.pipe';
 
 @Component({
   selector: 'xapi-transfer',
@@ -48,13 +49,10 @@ import { FormControl } from '@angular/forms';
 
         <div class="estimated-arrive-wrapper">
           <span class="text-light">Estimated arrival:</span>
-          <span [ngPlural]="payment.estimatedArrival">
-            <template ngPluralCase="=1">1 hour</template>
-            <template ngPluralCase="other">{{payment.estimatedArrival}} hours</template>
-          </span>
+          <span>{{payment.estimatedArrival | formatHours }}</span>
         </div>
 
-        <button class="xapi-submit" type="submit" [disabled]="currencyInput <= 0">Confirm your transfer</button>
+        <button class="xapi-submit" type="submit" (click)="openModal.emit('modalTransferReview')">Review your transfer</button>
       </div>
     </div>
   `
@@ -64,18 +62,19 @@ export class TransferComponent {
     {
       type: 'fast',
       fee: '4.98',
-      estimatedArrival: '1'
+      estimatedArrival: 5
     },
     {
       type: 'cheap',
       fee: '4.05',
-      estimatedArrival: '5'
+      estimatedArrival: 121
     }
   ];
 
   payment = this.payments[0];
   currencyInput= '';
   currencyOutput= '';
+  @Output() openModal = new EventEmitter<void>();
 
   onSelectionChange(payment) {
     this.payment = payment;

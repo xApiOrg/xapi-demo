@@ -35,6 +35,27 @@ footer{
   margin: 3px;
 }
 
+xapi-modal{
+  .material-icons{
+    color: $red;
+  }
+  .currency{
+    color: $grey-dark;
+    font-size: .9em;
+  }
+  .name{
+    color: red;
+  }
+
+  .recipient, .source{
+    padding: 0 10px;
+  }
+
+  .buttons{
+    padding-top: 20px;
+  }
+}
+
 // General
 
 /deep/ .xapi-label{
