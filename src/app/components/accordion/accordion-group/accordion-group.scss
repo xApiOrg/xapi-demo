@@ -71,6 +71,11 @@
     color: $grey;
     font-weight: normal;
     font-size: 1em;
+    display: inline-block;
+
+    span{
+      display: inline-block;
+    }
 
     .subtitle{
       font-size: .8em;

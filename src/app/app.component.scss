@@ -36,23 +36,35 @@ footer{
 }
 
 xapi-modal{
-  .material-icons{
+  text-align: center;
+
+  .source, .recipient{
+    margin: 0 10px;
+  }
+
+  .transfer{
+    margin-bottom: 30px;
+  }
+
+  .card-title, .material-icons{
     color: $red;
   }
-  .currency{
-    color: $grey-dark;
-    font-size: .9em;
-  }
-  .name{
-    color: red;
+  .card-footer{
+    color: $grey;
   }
 
-  .recipient, .source{
-    padding: 0 10px;
+  div{
+    line-height: 20px;
   }
 
-  .buttons{
-    padding-top: 20px;
+  .arrow{
+    i{
+      line-height: 100%;
+    }
+  }
+
+  .card-header{
+    margin-bottom: 5px;
   }
 }
 

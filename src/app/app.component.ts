@@ -14,7 +14,7 @@ import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
 
     <main>
       <xapi-accordion>
-        <xapi-accordion-group heading="Select an account" [index]=0 [isOpen]=false [source]="source">
+        <xapi-accordion-group heading="Select an account" [index]=0 [isOpen]=true [source]="source">
           <xapi-account-selection (source)="displaySource($event)"></xapi-account-selection>
         </xapi-accordion-group>
 
@@ -22,7 +22,7 @@ import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
           <xapi-recipient-selection (recipient)="displayRecipient($event)"></xapi-recipient-selection>
         </xapi-accordion-group>
 
-        <xapi-accordion-group heading="Your transfer" [index]=2 [isOpen]=true>
+        <xapi-accordion-group heading="Your transfer" [index]=2 [isOpen]=false>
           <xapi-transfer (openModal)="openTransferReviewModal($event)"></xapi-transfer>
         </xapi-accordion-group>
       </xapi-accordion>
@@ -31,19 +31,42 @@ import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
     <ng2-toasty></ng2-toasty>
 
     <xapi-modal [modalTitle]="'Review your transfer'" [blocking]=false [modalId]="modalId">
-      <div fxLayout="row" fxLayoutAlign="center">
+      <div fxLayout="row" fxLayoutAlign="center stretch" class="transfer">
         <div class="source" fxLayout="column" fxLayoutAlign="space-around center">
-          <i class="material-icons md-48">card_travel</i>
-          <span class="name">Monthly saver</span>
-          <span class="currency">1000,00 GBP</span>
+          <div class="card-header">
+            <i *ngIf="source && source.type === 'account'" class="material-icons md-48">card_travel</i>
+            <i *ngIf="source && source.type === 'creditCard'" class="material-icons md-48">credit_card</i>
+            <div class="card-title" *ngIf="source" >{{source.name}}</div>
+          </div>
+
+          <div class="card-footer">
+            <div>
+              <span *ngIf="source && source.type === 'creditCard'" class="currency-flag currency-flag-sm currency-flag-gbp"></span>
+              <span *ngIf="source && source.type === 'account'">Account balance</span>
+              <span *ngIf="source && source.type === 'creditCard'">{{source.currency}} card</span>
+            </div>
+            <div *ngIf="source && source.type === 'account'">{{source.balance | currency:source.currency:true:'1.2-2'}}</div>
+            <div *ngIf="source && source.type === 'creditCard'">last digit {{source.lastDigit}}</div>
+          </div>
         </div>
-        <div class="arrow">
+
+        <div class="arrow" fxLayout="column" fxLayoutAlign="strech">
           <i class="material-icons md-48">trending_flat</i>
         </div>
+
         <div class="recipient" fxLayout="column" fxLayoutAlign="space-around center">
-          <i class="material-icons md-48">account_circle</i>
-          <span class="name">Walter Harford</span>
-          <span class="currency">1200,00 USD</span>
+          <div class="card-header">
+            <i class="md-48 material-icons">account_circle</i>
+            <div *ngIf="recipient" class="card-title">{{recipient.name}}</div>
+          </div>
+
+          <div class="card-footer">
+            <div>
+              <span class="currency-flag currency-flag-sm currency-flag-gbp"></span>
+              <span *ngIf="recipient">{{recipient.currency}} account</span>
+            </div>
+            <div *ngIf="recipient">ending with {{recipient.accountNumber}}</div>
+          </div>
         </div>
       </div>
       <div class="buttons" fxLayout="row" fxLayoutAlign="center">
@@ -92,7 +115,7 @@ export class AppComponent {
 
   confirmTransfer() {
     this.modalService.close(this.modalId);
-    
+
     setTimeout(() => {
       this.toastyService.success(this.toastOptions);
     }, 500);
